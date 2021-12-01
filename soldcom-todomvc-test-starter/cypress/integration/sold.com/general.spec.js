@@ -12,4 +12,9 @@ describe('SOLD.com Test Project: general', () => {
   beforeEach(() => {
     cy.visit('/');
   });
+
+  it('hides main and footer sections', () => {
+    cy.get('.main').should('not.exist')
+    cy.get('.footer').should('not.exist')
+  })
 });
