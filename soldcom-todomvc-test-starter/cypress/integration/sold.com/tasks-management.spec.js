@@ -48,4 +48,15 @@ describe('SOLD.com Test Project: task management', () => {
 
     cy.get('.todo-count').should('have.text', '2 items left');
     });
+
+  it('shows "Clear Completed" button when a todo is complete', () => {
+    cy.createDefaultTodos();
+
+    cy.get('.todo-list li')
+      .eq(0)
+      .find('input.toggle')
+      .check();
+
+    cy.get('.clear-completed');
+    });
 });
