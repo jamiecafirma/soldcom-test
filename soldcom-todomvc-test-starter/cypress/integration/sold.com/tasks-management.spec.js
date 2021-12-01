@@ -37,4 +37,15 @@ describe('SOLD.com Test Project: task management', () => {
     .eq(0)
     .should('not.have.class', 'completed');
   });
+
+  it('shows how many todos are left', () => {
+    cy.createDefaultTodos();
+
+    cy.get('.todo-list li')
+      .eq(0)
+      .find('input.toggle')
+      .check();
+
+    cy.get('.todo-count').should('have.text', '2 items left');
+    });
 });
