@@ -59,4 +59,12 @@ describe('SOLD.com Test Project: general', () => {
 
     cy.get('.todo-list').children().should('have.length', 3)
   })
+
+  it('trims trailing and leading spaces on a todo', () => {
+    cy.get('.new-todo')
+      .type('    pet the dogs    ')
+      .type('{enter}')
+
+    cy.get('.todo-list li').should('have.text', 'pet the dogs')
+  })
 });
