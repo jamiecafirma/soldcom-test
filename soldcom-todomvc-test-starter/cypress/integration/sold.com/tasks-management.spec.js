@@ -22,4 +22,19 @@ describe('SOLD.com Test Project: task management', () => {
       expect(todo).to.have.class('completed')
     });
   });
+
+  it('unchecks todo', () => {
+    cy.createDefaultTodos();
+
+    cy.get('input.toggle').check();
+
+    cy.get('.todo-list li')
+    .eq(0)
+    .find('input.toggle')
+    .uncheck();
+
+    cy.get('.todo-list li')
+    .eq(0)
+    .should('not.have.class', 'completed');
+  });
 });
