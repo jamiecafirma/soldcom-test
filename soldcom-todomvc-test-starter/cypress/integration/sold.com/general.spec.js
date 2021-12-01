@@ -17,4 +17,8 @@ describe('SOLD.com Test Project: general', () => {
     cy.get('.main').should('not.exist')
     cy.get('.footer').should('not.exist')
   })
+
+  it ('focuses on the todo input field', () => {
+    cy.focused().should('have.class', 'new-todo')
+  })
 });
