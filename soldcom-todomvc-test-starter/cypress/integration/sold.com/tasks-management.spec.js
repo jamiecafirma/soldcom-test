@@ -87,4 +87,16 @@ describe('SOLD.com Test Project: task management', () => {
       .should('not.be.visible');
   });
 
+  it('highlights current filter', () => {
+    cy.createDefaultTodos();
+
+    cy.get('.filters')
+    .within(() => {
+      cy.get('li a')
+      .eq(1)
+      .as('selectedFilter')
+      .click()
+      .should('have.class', 'selected');
+    });
+  });
 });
