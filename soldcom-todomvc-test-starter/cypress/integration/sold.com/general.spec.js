@@ -25,8 +25,18 @@ describe('SOLD.com Test Project: general', () => {
 
   it ('clears text-input field when an item is added', () => {
     cy.get('.new-todo')
-    .type('walk the dogs')
+    .type('feed the dogs')
     .type('{enter}')
     .should('have.value', '')
+  })
+
+  it ('shows main and footer sections when an item is added', () => {
+    cy.get('.new-todo')
+    .type('walk the dogs')
+    .type('{enter}')
+
+    cy.get('.main')
+
+    cy.get('.footer')
   })
 });
