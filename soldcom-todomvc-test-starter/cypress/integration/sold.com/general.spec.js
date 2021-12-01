@@ -47,4 +47,16 @@ describe('SOLD.com Test Project: general', () => {
 
     cy.get('.todo-list li').contains('pet the dogs')
   })
+
+  it ('adds 3 todos', () => {
+    cy.get('.new-todo')
+    .type('feed the dogs')
+    .type('{enter}')
+    .type('walk the dogs')
+    .type('{enter}')
+    .type('pet the dogs')
+    .type('{enter}')
+
+    cy.get('.todo-list').children().should('have.length', 3)
+  })
 });
