@@ -74,4 +74,17 @@ describe('SOLD.com Test Project: task management', () => {
     .contains('swab the deck')
     .should('not.exist');
     });
+
+  it('hides other controls while editing a todo', () => {
+    cy.createDefaultTodos();
+
+    cy.get('.todo-list li')
+      .eq(0)
+      .dblclick()
+      .find('input.toggle')
+      .should('not.be.visible')
+      .siblings('.destroy')
+      .should('not.be.visible');
+  });
+
 });
