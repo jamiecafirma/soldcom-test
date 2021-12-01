@@ -12,4 +12,59 @@ describe('SOLD.com Test Project: general', () => {
   beforeEach(() => {
     cy.visit('/');
   });
+
+  it('hides main and footer sections', () => {
+    cy.get('.main').should('not.exist');
+
+    cy.get('.footer').should('not.exist');
+  });
+
+  it ('focuses on the todo input field', () => {
+    cy.focused().should('have.class', 'new-todo');
+  });
+
+  it ('clears text-input field when an item is added', () => {
+    cy.get('.new-todo')
+    .type('feed the dogs')
+    .type('{enter}')
+    .should('have.value', '');
+  });
+
+  it ('shows main and footer sections when an item is added', () => {
+    cy.get('.new-todo')
+    .type('walk the dogs')
+    .type('{enter}');
+
+    cy.get('.main');
+
+    cy.get('.footer');
+  });
+
+  it ('adds a todo', () => {
+    cy.get('.new-todo')
+    .type('pet the dogs')
+    .type('{enter}');
+
+    cy.get('.todo-list li').contains('pet the dogs');
+  });
+
+  it ('adds 3 todos', () => {
+    cy.get('.new-todo')
+    .type('feed the dogs')
+    .type('{enter}')
+    .type('walk the dogs')
+    .type('{enter}')
+    .type('pet the dogs')
+    .type('{enter}');
+
+    cy.get('.todo-list').children().should('have.length', 3);
+  })
+
+  it('trims trailing and leading spaces on a todo', () => {
+    cy.get('.new-todo')
+      .type('    pet the dogs    ')
+      .type('{enter}');
+
+    cy.get('.todo-list li').should('have.text', 'pet the dogs');
+  });
 });
