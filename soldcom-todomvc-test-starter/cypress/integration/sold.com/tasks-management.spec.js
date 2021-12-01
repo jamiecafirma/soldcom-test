@@ -59,4 +59,19 @@ describe('SOLD.com Test Project: task management', () => {
 
     cy.get('.clear-completed');
     });
+
+  it('"Clear Completed" button gets rid of completed todo', () => {
+    cy.createDefaultTodos();
+
+    cy.get('.todo-list li')
+      .eq(1)
+      .find('input.toggle')
+      .check();
+
+    cy.get('.clear-completed').click();
+
+    cy.get('.todo-list li')
+    .contains('swab the deck')
+    .should('not.exist');
+    });
 });
