@@ -39,4 +39,12 @@ describe('SOLD.com Test Project: general', () => {
 
     cy.get('.footer')
   })
+
+  it ('adds a todo', () => {
+    cy.get('.new-todo')
+    .type('pet the dogs')
+    .type('{enter}')
+
+    cy.get('.todo-list li').contains('pet the dogs')
+  })
 });
